@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAP Transfer Guide - Moonshot to SecuX Infographic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+        
+        .header .badge {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        
+        /* Critical Warning */
+        .critical-warning {
+            background: #ff4444;
+            color: white;
+            padding: 30px;
+            margin: 30px;
+            border-radius: 15px;
+            border: 5px solid #cc0000;
+            text-align: center;
+        }
+        
+        .critical-warning h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .critical-warning p {
+            font-size: 1.3em;
+            margin: 10px 0;
+        }
+        
+        /* Quick Facts */
+        .quick-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+        
+        .fact-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .fact-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .fact-card p {
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        /* Step Container */
+        .steps-container {
+            padding: 40px;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 40px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-width: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            font-weight: bold;
+            padding: 40px;
+        }
+        
+        .step-content {
+            padding: 30px;
+            flex: 1;
+        }
+        
+        .step-content h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .step-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .step-content li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.1em;
+        }
+        
+        .step-content li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        
+        /* Security Alert */
+        .security-alert {
+            background: #fff3cd;
+            border: 3px solid #ffc107;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .security-alert h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .security-alert p {
+            color: #856404;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        /* Address Example */
+        .address-example {
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            margin: 15px 0;
+            word-break: break-all;
+        }
+        
+        /* Visual Flow */
+        .visual-flow {
+            background: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .flow-step {
+            display: inline-block;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .flow-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            margin: 0 auto 15px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .flow-arrow {
+            font-size: 3em;
+            color: #667eea;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+        
+        .flow-label {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        /* Checklist */
+        .checklist {
+            background: #d4edda;
+            border: 3px solid #28a745;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .checklist h3 {
+            color: #155724;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .checklist-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checklist-item:before {
+            content: "☐";
+            font-size: 1.5em;
+            margin-right: 15px;
+            color: #28a745;
+        }
+        
+        /* Do's and Don'ts */
+        .dos-donts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px;
+        }
+        
+        .dos {
+            background: #d4edda;
+            border: 3px solid #28a745;
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .donts {
+            background: #f8d7da;
+            border: 3px solid #dc3545;
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .dos h3 {
+            color: #155724;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .donts h3 {
+            color: #721c24;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .dos li, .donts li {
+            padding: 12px 0;
+            font-size: 1.1em;
+        }
+        
+        .dos li:before {
+            content: "✅ ";
+        }
+        
+        .donts li:before {
+            content: "❌ ";
+        }
+        
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .footer h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .footer p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+            
+            .step {
+                flex-direction: column !important;
+            }
+            
+            .step-number {
+                min-width: 100%;
+                padding: 20px;
+                font-size: 3em;
+            }
+            
+            .dos-donts {
+                grid-template-columns: 1fr;
+            }
+            
+            .flow-arrow {
+                display: block;
+                transform: rotate(90deg);
+                margin: 20px auto;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header -->
+        <div class="header">
+            <h1>⚡ ZAP Transfer Guide</h1>
+            <p>Moonshot App → SecuX V20 Cold Wallet</p>
+            <div class="badge">Secure • Simple • Step-by-Step</div>
+        </div>
+        
+        <!-- Critical Warning -->
+        <div class="critical-warning">
+            <h2>⚠️ CRITICAL: SOLANA NETWORK ONLY!</h2>
+            <p>ZAP is on SOLANA blockchain</p>
+            <p><strong>Using wrong network = PERMANENT LOSS</strong></p>
+            <p>NOT Ethereum • NOT BSC • NOT any other network</p>
+        </div>
+        
+        <!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="fact-card">
+                <h3>🌐 Network</h3>
+                <p><strong>Solana</strong></p>
+            </div>
+            
+            <div class="fact-card">
+                <h3>🪙 Token Type</h3>
+                <p><strong>SPL Token</strong></p>
+            </div>
+            
+            <div class="fact-card">
+                <h3>💰 Network Fee</h3>
+                <p><strong>~$0.00025</strong></p>
+            </div>
+            
+            <div class="fact-card">
+                <h3>⏱️ Transfer Time</h3>
+                <p><strong>5-30 seconds</strong></p>
+            </div>
+            
+            <div class="fact-card" style="grid-column: 1 / -1;">
+                <h3>📝 Contract Address</h3>
+                <div class="address-example">
+                    4D7dS7g4fDCWmcfNbZUCNpiVXhp1dmkAZywWZcnZmoon
+                </div>
+            </div>
+        </div>
+        
+        <!-- Visual Flow -->
+        <div class="visual-flow">
+            <h2 style="color: #667eea; margin-bottom: 40px; font-size: 2.5em;">Transfer Flow Overview</h2>
+            
+            <div class="flow-step">
+                <div class="flow-icon">📱</div>
+                <div class="flow-label">Moonshot<br>App</div>
+            </div>
+            
+            <span class="flow-arrow">→</span>
+            
+            <div class="flow-step">
+                <div class="flow-icon">🌐</div>
+                <div class="flow-label">Solana<br>Network</div>
+            </div>
+            
+            <span class="flow-arrow">→</span>
+            
+            <div class="flow-step">
+                <div class="flow-icon">🔐</div>
+                <div class="flow-label">SecuX V20<br>Cold Wallet</div>
+            </div>
+        </div>
+        
+        <!-- Steps -->
+        <div class="steps-container">
+            <h2 style="text-align: center; color: #667eea; font-size: 2.5em; margin-bottom: 40px;">
+                Step-by-Step Guide
+            </h2>
+            
+            <!-- Step 1 -->
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h2>🔧 Set Up SecuX V20</h2>
+                    <ul>
+                        <li>Initialize device with PIN</li>
+                        <li>Write down 24-word recovery phrase</li>
+                        <li>Store recovery phrase safely (NEVER digital!)</li>
+                        <li>Update firmware to latest version</li>
+                        <li>Install SecuXess app on computer/phone</li>
+                    </ul>
+                    
+                    <div class="security-alert">
+                        <h3>🔒 Security Alert</h3>
+                        <p>Your 24-word recovery phrase is the MASTER KEY to your funds. Never store it digitally, never share it with anyone, and never enter it into a computer.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h2>📲 Install Solana App</h2>
+                    <ul>
+                        <li>Connect SecuX V20 to device</li>
+                        <li>Open SecuXess application</li>
+                        <li>Go to "Wallet Manager"</li>
+                        <li>Find and install <strong>"Solana (SOL)"</strong></li>
+                        <li>Verify installation complete</li>
+                    </ul>
+                    
+                    <div class="security-alert">
+                        <h3>⚡ Why This Matters</h3>
+                        <p>ZAP is a Solana SPL token. Without the Solana app installed, your SecuX cannot receive ZAP tokens.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h2>📬 Get Your Solana Address</h2>
+                    <ul>
+                        <li>Open SecuXess app and unlock device</li>
+                        <li>Navigate to Solana (SOL) account</li>
+                        <li>Click "Receive" button</li>
+                        <li>Address and QR code appear</li>
+                        <li><strong>CRITICAL:</strong> Verify address on SecuX screen matches app</li>
+                        <li>Copy address or save QR code</li>
+                    </ul>
+                    
+                    <div class="security-alert">
+                        <h3>🎯 Address Verification</h3>
+                        <p><strong>ALWAYS</strong> verify that the address shown in the app matches the address on your SecuX V20 screen. This prevents malware attacks. Check first 6 and last 6 characters minimum.</p>
+                    </div>
+                    
+                    <p style="margin-top: 20px; font-weight: bold;">Your address looks like:</p>
+                    <div class="address-example">
+                        7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU
+                        <br><small>(44 characters, letters and numbers)</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h2>🧪 Send Test Amount First</h2>
+                    <ul>
+                        <li>Before sending all ZAP, send small test (100-1,000 ZAP)</li>
+                        <li>Verify test amount arrives correctly</li>
+                        <li>Confirm you can see it in SecuX</li>
+                        <li>Then proceed with remaining balance</li>
+                    </ul>
+                    
+                    <div class="security-alert">
+                        <h3>💡 Why Test First?</h3>
+                        <p>Testing with a small amount confirms: ✓ Correct network selected ✓ Address is right ✓ Process works. Cost: ~$0.00025. Benefit: Prevents losing everything!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 5 -->
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h2>📤 Withdraw from Moonshot</h2>
+                    <ul>
+                        <li>Open Moonshot app on mobile</li>
+                        <li>Go to Portfolio → Find ZAP</li>
+                        <li>Tap "Send" or "Withdraw"</li>
+                        <li>Select "External Wallet"</li>
+                        <li><strong style="color: red;">SELECT SOLANA NETWORK</strong></li>
+                        <li>Paste SecuX Solana address</li>
+                        <li>Enter amount (test first!)</li>
+                        <li>Review all details carefully</li>
+                        <li>Confirm and send</li>
+                    </ul>
+                    
+                    <div class="checklist">
+                        <h3>✓ Pre-Send Checklist</h3>
+                        <div class="checklist-item">Network shows "Solana" (NOT ETH, BSC, etc.)</div>
+                        <div class="checklist-item">Address matches your SecuX exactly</div>
+                        <div class="checklist-item">Amount is correct</div>
+                        <div class="checklist-item">Sending test amount first</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 6 -->
+            <div class="step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h2>🔍 Track Transaction</h2>
+                    <ul>
+                        <li>Copy transaction ID from Moonshot</li>
+                        <li>Go to <strong>solscan.io</strong></li>
+                        <li>Paste transaction ID in search</li>
+                        <li>Watch for "Success" status</li>
+                        <li>Typical time: 5-30 seconds</li>
+                    </ul>
+                    
+                    <p style="margin-top: 20px; font-weight: bold;">Track at:</p>
+                    <div class="address-example" style="background: #667eea; color: white;">
+                        https://solscan.io/
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 7 -->
+            <div class="step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <h2>✅ Verify Arrival</h2>
+                    <ul>
+                        <li>Open SecuXess app</li>
+                        <li>Navigate to Solana account</li>
+                        <li>Look for ZAP token in balance</li>
+                        <li>If not visible: Add token manually</li>
+                        <li>Use contract: 4D7dS7g4fDCWmcfNbZUCNpiVXhp1dmkAZywWZcnZmoon</li>
+                        <li>Verify amount matches what you sent</li>
+                    </ul>
+                    
+                    <div style="background: #28a745; color: white; padding: 30px; border-radius: 15px; text-align: center; margin-top: 20px;">
+                        <h2 style="font-size: 2.5em; margin-bottom: 15px;">🎉 SUCCESS!</h2>
+                        <p style="font-size: 1.3em;">Your ZAP is now safely stored in cold storage!</p>
+                        <p style="font-size: 1.1em; margin-top: 10px;">Private keys are offline • Maximum security achieved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Do's and Don'ts -->
+        <div class="dos-donts">
+            <div class="dos">
+                <h3>✅ DO These Things</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li>Always verify address on SecuX screen</li>
+                    <li>Test with small amount first</li>
+                    <li>Keep recovery phrase offline (paper only)</li>
+                    <li>Double-check network = Solana</li>
+                    <li>Use official apps only</li>
+                    <li>Take your time - verify everything</li>
+                    <li>Save transaction IDs</li>
+                </ul>
+            </div>
+            
+            <div class="donts">
+                <h3>❌ DON'T Do These Things</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li>Never enter recovery phrase digitally</li>
+                    <li>Never skip address verification</li>
+                    <li>Never send to wrong network</li>
+                    <li>Never share private keys/seed</li>
+                    <li>Never rush transactions</li>
+                    <li>Never trust unsolicited support</li>
+                    <li>Never take screenshots of seed phrase</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Final Checklist -->
+        <div style="padding: 40px; background: #f8f9fa;">
+            <div class="checklist">
+                <h3>📋 Complete Transfer Checklist</h3>
+                <div class="checklist-item">SecuX V20 initialized and ready</div>
+                <div class="checklist-item">Solana app installed on SecuX</div>
+                <div class="checklist-item">Receiving address copied from SecuX</div>
+                <div class="checklist-item">Address verified on SecuX screen</div>
+                <div class="checklist-item">Solana network selected in Moonshot</div>
+                <div class="checklist-item">Test transfer completed successfully</div>
+                <div class="checklist-item">Full balance transferred</div>
+                <div class="checklist-item">ZAP visible in SecuX wallet</div>
+                <div class="checklist-item">Recovery phrase stored safely offline</div>
+                <div class="checklist-item">All done - ZAP is secure! 🎉</div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <h3>🔒 Your ZAP is Now Secure</h3>
+            <p>Stored in cold storage with offline private keys</p>
+            <p style="margin-top: 30px; font-size: 1em; opacity: 0.8;">
+                Need help? Visit zapmemecoin.com<br>
+                Email: Zapmemecoin@gmail.com
+            </p>
+            <p style="margin-top: 30px; font-size: 0.9em; opacity: 0.7;">
+                ⚡ ZAP - Zero Emission Autonomous Power<br>
+                Powering the Electric Future
+            </p>
+        </div>
+        
+    </div>
+</body>
+</html>
